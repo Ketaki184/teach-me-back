@@ -213,3 +213,35 @@ console.log(scoreExplanation("pointers", example));
 module.exports = {
     scoreExplanation
 };
+
+
+function submitExplanation() {
+
+    const topic = document.getElementById("topic").value;
+    const explanation = document.getElementById("explanation").value.trim();
+
+    if (topic === "") {
+        alert("Please select a topic.");
+        return;
+    }
+
+    if (explanation === "") {
+        alert("Please write your explanation.");
+        return;
+    }
+
+    const result = scoreExplanation(topic, explanation);
+
+    if (result.error) {
+        alert(result.error);
+        return;
+    }
+
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("score").innerText =
+        result.score + "/100";
+
+    document.getElementById("feedback").innerText =
+        result.feedback;
+}
